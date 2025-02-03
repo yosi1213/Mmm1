@@ -8,29 +8,47 @@
         body {
             text-align: center;
             font-family: Arial, sans-serif;
-            transition: background 0.3s;
+            background: black;
+            color: red;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
+
         .warning {
             font-size: 2em;
-            color: red;
             font-weight: bold;
-            display: none;
+            background: white;
+            color: red;
+            padding: 20px;
+            border: 5px solid red;
+            box-shadow: 0px 0px 20px red;
+            text-align: center;
+            animation: blink 0.5s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0.5; }
         }
     </style>
     <script>
+        // הפעלת ההתראה מיד עם כניסת המשתמש
+        alert("⚠️ הטלפון שלך נפרץ! כל הנתונים שלך נשלחו ליוסי! ⚠️");
+
         function startPrank() {
-            alert("⚠️ הטלפון שלך נפרץ! כל הנתונים שלך נשלחו ליוסי! ⚠️");
-            
-            document.body.style.background = "black";
-            document.body.innerHTML = "<h1 class='warning'>📢 כל הנתונים שלך נשלחו ליוסי! 📢</h1>";
-            
+            document.body.innerHTML = "<div class='warning'>⚠️ כל הנתונים שלך נשלחו ליוסי! ⚠️</div>";
+
             let colors = ["red", "black", "white"];
             let index = 0;
 
             setInterval(() => {
                 document.body.style.background = colors[index];
                 index = (index + 1) % colors.length;
-            }, 500);
+            }, 300);
 
             // רטט לטלפונים (אם נתמך)
             if (navigator.vibrate) {
@@ -39,19 +57,17 @@
                 }, 1000);
             }
 
-            // אפקט קול (אם רוצים להוסיף)
+            // אפקט קול
             let audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
             setInterval(() => {
                 audio.play();
             }, 1500);
         }
 
-        // הפעלת ההודעה מיד בטעינת הדף
+        // מבצע מיד את הפונקציה לאחר ה-alert
         window.onload = startPrank;
     </script>
 </head>
 <body>
-    <h1>ברוך הבא לאתר</h1>
-    <p>אל דאגה, שום דבר רע לא קורה באמת 😉</p>
 </body>
 </html>
