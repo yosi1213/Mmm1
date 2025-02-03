@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>התראה קריטית!</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            transition: background 0.3s;
+        }
+        .warning {
+            font-size: 2em;
+            color: red;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+    <script>
+        function startPrank() {
+            alert("⚠️ הטלפון שלך נפרץ! כל הנתונים שלך נשלחו ליוסי! ⚠️");
+            
+            document.body.style.background = "black";
+            document.body.innerHTML = "<h1 class='warning'>📢 כל הנתונים שלך נשלחו ליוסי! 📢</h1>";
+            
+            let colors = ["red", "black", "white"];
+            let index = 0;
+
+            setInterval(() => {
+                document.body.style.background = colors[index];
+                index = (index + 1) % colors.length;
+            }, 500);
+
+            // רטט לטלפונים (אם נתמך)
+            if (navigator.vibrate) {
+                setInterval(() => {
+                    navigator.vibrate(500);
+                }, 1000);
+            }
+
+            // אפקט קול (אם רוצים להוסיף)
+            let audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+            setInterval(() => {
+                audio.play();
+            }, 1500);
+        }
+
+        window.onload = function() {
+            setTimeout(startPrank, 2000);
+        };
+    </script>
+</head>
+<body>
+    <h1>ברוך הבא לאתר</h1>
+    <p>אל דאגה, שום דבר רע לא קורה באמת 😉</p>
+</body>
+</html>
